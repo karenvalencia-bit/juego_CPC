@@ -1,11 +1,15 @@
+let contador=0;
+let contadormalas=0;
 let calcular=document.getElementById("calcular");
 let siguiente=document.getElementById("siguiente");
+let puntaje=document.getElementById("puntaje");
 
 
 
 
 calcular.addEventListener("click", verificarRespuesta);
 siguiente.addEventListener("click", pasarpregunta);
+puntaje.addEventListener("click",calcularPuntaje);
 
 function verificarRespuesta(){
     
@@ -20,14 +24,23 @@ function verificarRespuesta(){
 
     let calcularResultado=Number(numero1)+Number(numero2);
 
-    if(resultado==calcularResultado){
+    if(resultado==calcularResultado)
+    {
         console.log("tu respuesta esta correcta");
+
+        contador++;
        
         texto.textContent="tu respuesta esta correcta";
 
         gif.classList.remove("invisible");
         gif.classList.add("visble");
         gif.src="https://giphy.com/embed/xT9DPiHFM8Iy3hiC3e";
+
+        setTimeout (function(){
+          gif.src=""
+          gif.classList.remove("visible");
+          gif.classList.add("invisble");
+        },4000)
 
 
     }
@@ -36,9 +49,17 @@ function verificarRespuesta(){
        
         texto.textContent="tu respuesta esta incorrecta";
 
+        contadormalas++;
+        
         gif.classList.remove("invisible");
         gif.classList.add("visble");
         gif.src="https://giphy.com/embed/JT7Td5xRqkvHQvTdEu";
+
+        setTimeout (function(){
+          gif.src=""
+          gif.classList.remove("visible");
+          gif.classList.add("invisble");
+        },2000)
 
         
 
@@ -85,4 +106,19 @@ function pasarpregunta() {
     
    
   }
+  
+
+  function calcularPuntaje(){
+
+    let imagen=document.getElementById("gif3");
+    imagen.src="https://giphy.com/embed/9xt1MUZqkneFiWrAAD";
+    console.log(contador);
+    let h1=document.getElementById("puntajebueno");
+    let h2=document.getElementById("puntajemalo")
+    h1.textContent="sacaste "+contador+" buenas";
+    h2.textContent="sacaste "+contadormalas+ " malas";
+
+
+  }
+
 
